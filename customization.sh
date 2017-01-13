@@ -2,7 +2,7 @@
 
 # re-sources functions from this file
 function resource {
-	source ~/bin/functions
+	source ~/bin/customization.sh
 }
 
 function greet {
@@ -141,7 +141,7 @@ alias openresty=". ~/bin/resty"
 
 alias ll="ls -alF $*"
 alias a="atom ."
-alias j='autojump'
+# alias j='autojump'
 alias g='git'
 alias ..='cd ..'
 alias wifion='networksetup -setairportpower en0  On'
@@ -201,5 +201,5 @@ txtrst='\e[0m'    # Text Reset
 
 
 # export PS1="🍎  $bldred\h$txtrst:$txtcyn\W$txtrst $txtgrn\u$txtrst 💰  "
-export PS1="\[$bldred\]\h\[$txtrst\]:\[$txtcyn\]\W\[$txtrst\] \[$txtgrn\]\u\[$txtrst\]$ "
+export PS1="🍎  \[$bldred\]\h\[$txtrst\]:\[$txtcyn\]\W\[$txtrst\] \[$txtgrn\]\u\[$txtrst\]💰  "
 # export PS1="\h:\W \[$txtgrn\]\u$\[$txtrst\] "
