@@ -151,6 +151,9 @@ alias wifioff='networksetup -setairportpower en0  Off'
 eval "$(hub alias -s)"
 
 
+# set up thefuck
+eval $(thefuck --alias)
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="usr/local/bin:$PATH"
