@@ -1,22 +1,111 @@
+# [user]
+#     name = Neel Mehta
+#     email = neelmehta@college.harvard.edu
+# [filter "media"]
+#     required = true
+#     clean = git media clean %f
+#     smudge = git media smudge %f
+# [credential]
+#     helper = osxkeychain
+# [push]
+#     default = simple
+# [color]
+#     ui = true
+# [http]
+#     sslVerify = false
+# [filter "hawser"]
+#     clean = git hawser clean %f
+#     smudge = git hawser smudge %f
+#     required = true
+
+# [alias]
+#   ci = commit
+#   st = status
+#   br = branch
+#   df = diff
+#   ps = push
+#   f = fetch
+#   a = add
+#   aa = add -A
+#   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+#   type = cat-file -t
+#   dump = cat-file -p
+#   mygraph = graph --author=neel
+#   quicklog = log --format=short
+#   # ard reset to the last commit
+#   nuke = "!f() { git reset --hard HEAD && git clean -df; }; f"
+#   # hard reset submodules
+#   subnuke = submodule foreach --recursive git clean -f
+#   # `git upload mybranch` pushes a local branch `mybranch` to GitHub
+#   upload = "!f() { git push -u origin $1; }; f"
+#   # `git forget` removes all files ignored by .gitignore
+#   forget = "!f() { git rm -r --cached .; git add .;  }; f"
+#   # cache login credentials so you don't have to keep logging in; defaults to 10k days or 30 years
+#   cachelogin = "!f() {git config credential.helper 'cache --timeout=864000000'}; f"
+
+# # khan academy
+# # Feel free to include whatever personal configs you'd like after the [include]
+
+# # [include]
+#   # path = .gitconfig.khan
+# [core]
+#     # editor = subl -n -w
+#     editor = vim
+# 	excludesfile = /Users/neel/.gitignore_global
+# 	autocrlf = input
+# [filter "lfs"]
+#     required = true
+#     clean = git-lfs clean %f
+#     smudge = git-lfs smudge %f
+# # [kaclone]
+#     # email = neel@khanacademy.org
+
+# # from khan academy
+# [alias]
+#   # Versions of commands that handle submodules properly.
+#   co = "!f() { git checkout \"$@\" && git submodule update --init --recursive; }; f"
+#   p = "!f() { git pull \"$@\" && git submodule update --init --recursive; }; f"
+#   m = "!f() { git merge \"$@\" && git submodule update --init --recursive; }; f"
+#   gsu = "!f() { git submodule sync --recursive && git submodule update --init --recursive; }; f"
+
+#   # Branch management for dealing with phabricator and github-style deploys.
+#   # e.g. deploy-branch, review-branch, find-reviewers
+#   # Note that these reference scripts from Khan/git-workflow
+#   # Those scripts should be installed and part of the default path.
+#   rgrep = !git recursive-grep
+
+#   # Other useful commands.
+#   outgoing = "!git fetch >/dev/null 2>&1; git log @{upstream}..HEAD"
+#   incoming = "!git fetch >/dev/null 2>&1; git log HEAD..@{upstream}"
+#   update-submodule = !bash -c 'git pull --no-rebase && pushd $1 && git co master && git pull && popd && git commit ${1%/} -m Substate\\ for\\ ${1%/} -m Test\\ plan: -m None && git push' --
+
+#   # For after a commit fails with lint, and it says 'commit message saved...'
+#   recommit = "!git commit -F \"`git rev-parse --git-dir`\"/commit.save"
+#   weekly = "!git log --author=$USER --since=`date -d last\\ monday +%Y/%m/%d`"
+
+#   # Versions of commands with useful options specified.
+#   graph = log --graph --decorate --oneline --pretty=format:"%h%x20%Cgreen%d%x20%Cred%an%x20%Cblue%ad%x20%Creset%s" --all --full-history --date=short
+#   ls-ignored = ls-files --exclude-standard --ignored --others
+#   conflicts = diff --name-only --diff-filter=U
+
+# # [commit]
+#   # template = ~/.git_template/commit_template
+
+# [push]
+#   default = simple
+
+# # These next three sections allow us to use the 'git-bigfile' extension.
+# [filter "bigfile"]
+#   clean = git-bigfile filter-clean
+#   smudge = git-bigfile filter-smudge
+
+# [git-bigfile]
+#   transport = s3
+
+
 [user]
-    name = Neel Mehta
-    email = neelmehta@college.harvard.edu
-[filter "media"]
-    required = true
-    clean = git media clean %f
-    smudge = git media smudge %f
-[credential]
-    helper = osxkeychain
-[push]
-    default = simple
-[color]
-    ui = true
-[http]
-    sslVerify = false
-[filter "hawser"]
-    clean = git hawser clean %f
-    smudge = git hawser smudge %f
-    required = true
+	email = hathix@users.noreply.github.com
+	name = Neel Mehta
 
 [alias]
   ci = commit
@@ -30,9 +119,8 @@
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   type = cat-file -t
   dump = cat-file -p
-  mygraph = graph --author=neel
   quicklog = log --format=short
-  # ard reset to the last commit
+  # hard reset to the last commit
   nuke = "!f() { git reset --hard HEAD && git clean -df; }; f"
   # hard reset submodules
   subnuke = submodule foreach --recursive git clean -f
@@ -40,28 +128,11 @@
   upload = "!f() { git push -u origin $1; }; f"
   # `git forget` removes all files ignored by .gitignore
   forget = "!f() { git rm -r --cached .; git add .;  }; f"
-  # cache login credentials so you don't have to keep logging in
-  cachelogin = "!f() {git config credential.helper 'cache --timeout=1000000'}; f"
+  # git commit/add/push 
+  revolt = "!f() { git add -A; git commit -m \"$1\"; git push; }; f"
+  # cache login credentials so you don't have to keep logging in; defaults to 10k days or 30 years
+  cachelogin = "!f() {git config credential.helper 'cache --timeout=864000000'}; f"
 
-# khan academy
-# Feel free to include whatever personal configs you'd like after the [include]
-
-# [include]
-  # path = .gitconfig.khan
-[core]
-    # editor = subl -n -w
-    editor = vim
-	excludesfile = /Users/neel/.gitignore_global
-	autocrlf = input
-[filter "lfs"]
-    required = true
-    clean = git-lfs clean %f
-    smudge = git-lfs smudge %f
-# [kaclone]
-    # email = neel@khanacademy.org
-
-# from khan academy
-[alias]
   # Versions of commands that handle submodules properly.
   co = "!f() { git checkout \"$@\" && git submodule update --init --recursive; }; f"
   p = "!f() { git pull \"$@\" && git submodule update --init --recursive; }; f"
@@ -87,17 +158,12 @@
   graph = log --graph --decorate --oneline --pretty=format:"%h%x20%Cgreen%d%x20%Cred%an%x20%Cblue%ad%x20%Creset%s" --all --full-history --date=short
   ls-ignored = ls-files --exclude-standard --ignored --others
   conflicts = diff --name-only --diff-filter=U
-
-# [commit]
-  # template = ~/.git_template/commit_template
-
-[push]
-  default = simple
-
-# These next three sections allow us to use the 'git-bigfile' extension.
-[filter "bigfile"]
-  clean = git-bigfile filter-clean
-  smudge = git-bigfile filter-smudge
-
-[git-bigfile]
-  transport = s3
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[pull]
+	rebase = false
