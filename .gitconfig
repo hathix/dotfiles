@@ -167,3 +167,8 @@
 	clean = git-lfs clean -- %f
 [pull]
 	rebase = false
+# These two help with cloning huge repos like Homebrew
+[core]
+	compression = 0
+[http]
+	postBuffer = 1048576000
